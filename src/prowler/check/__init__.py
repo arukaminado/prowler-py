@@ -1,1 +1,1 @@
-from .AbstractCheck import AbstractCheck
+from .AbstractCheck import AbstractCheck, Rule

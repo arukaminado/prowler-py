@@ -1,9 +1,14 @@
 from abc import ABCMeta, abstractmethod
-from typing import List, Callable, Tuple, NamedTuple
+from typing import List, Callable, NamedTuple
 
-CheckFunction = Callable[[], List[str]]
-# rule id (compatible with prowler), short name, title, scored, level, check function
-Rule = Tuple[str, str, str, bool, int, CheckFunction]
+
+class Rule(NamedTuple):
+    prowler_id: str
+    rule_id: str
+    title: str
+    scored: bool
+    level: int
+    check_function: Callable[[], List[str]]
 
 
 class AbstractCheck(metaclass=ABCMeta):
