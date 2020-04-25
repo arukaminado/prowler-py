@@ -1,3 +1,1 @@
-awscli
-ansi2html
-detect-secrets
+boto3

@@ -19,7 +19,7 @@ setup(
     url='https://github.com/nalansitan/prowler-py/',
     author='nalansitan',
     author_email='nalansitan@gmail.com',
-    classifiers=[  # Optional
+    classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Topic :: Security',
@@ -31,9 +31,7 @@ setup(
     packages=find_packages(where='src'),
     python_requires='>=3.5',
     install_requires=[
-      'awscli',
-      'ansi2html',
-      'detect-secrets',
+      'boto3',
     ],
     entry_points={
         'console_scripts': [
