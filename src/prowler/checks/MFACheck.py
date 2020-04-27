@@ -2,19 +2,18 @@ import base64
 import time
 from typing import List
 
-import boto3
-
 from . import AbstractCheck, Rule
+from prowler.settings import aws_session
 
 
 def check_iam_mfa_for_users_with_console_password() -> List[str]:
     while True:
-        response = boto3.client('iam').generate_credential_report()
+        response = aws_session.client('iam').generate_credential_report()
         if response['State'] == 'COMPLETE':
             break
         else:
             time.sleep(1)
-    response = boto3.client('iam').get_credential_report()
+    response = aws_session.client('iam').get_credential_report()
     assert response['ReportFormat'] == 'text/csv'
     credential_report = base64.b64decode(response['Content'])
     return []
