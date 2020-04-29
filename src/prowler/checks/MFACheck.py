@@ -1,22 +1,19 @@
-import base64
-import time
 from typing import List
 
 from . import AbstractCheck, Rule
 from prowler.settings import aws_session
+from prowler.common.functions import *
 
 
 def check_iam_mfa_for_users_with_console_password() -> List[str]:
-    while True:
-        response = aws_session.client('iam').generate_credential_report()
-        if response['State'] == 'COMPLETE':
-            break
-        else:
-            time.sleep(1)
-    response = aws_session.client('iam').get_credential_report()
-    assert response['ReportFormat'] == 'text/csv'
-    credential_report = base64.b64decode(response['Content'])
-    return []
+    credential_report = get_credential_report()
+    result = []
+    for user in credential_report:
+        if user['password_enabled'] == 'true' and user['mfa_active'] == 'false':
+            result.append('User' + user + ' has Password enabled but MFA disabled')
+    if not result:
+        result.append('No users found with Password enabled and MFA disabled')
+    return result
 
 
 class MFACheck(AbstractCheck):
