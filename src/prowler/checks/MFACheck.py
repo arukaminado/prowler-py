@@ -1,7 +1,6 @@
 from typing import List
 
 from . import AbstractCheck, Rule
-from prowler.settings import aws_session
 from prowler.common.functions import *
 
 
@@ -25,6 +24,7 @@ class MFACheck(AbstractCheck):
                 'Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password',
                 True,
                 1,
+                True,
                 check_iam_mfa_for_users_with_console_password
             )
         ]

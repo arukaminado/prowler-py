@@ -8,6 +8,7 @@ class Rule(NamedTuple):
     title: str
     scored: bool
     level: int
+    cis_benchmark: bool
     check_function: Callable[[], List[str]]
 
 

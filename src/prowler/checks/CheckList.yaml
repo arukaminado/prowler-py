@@ -1,0 +1,13 @@
+checks:
+  - prowler_id: 1.1
+    rule_id: xx
+    title: Avoid the use of the root account
+    scored: true
+    cis_benchmark: true
+    level: 1
+  - prowler_id: 1.2
+    rule_id: iam_mfa_for_users_with_console_password
+    title: Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password
+    scored: true
+    cis_benchmark: true
+    level: 1
