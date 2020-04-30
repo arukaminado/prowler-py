@@ -29,9 +29,11 @@ setup(
     ],
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
+    include_package_data=True,
     python_requires='>=3.5',
     install_requires=[
       'boto3',
+      'pyyaml',
     ],
     entry_points={
         'console_scripts': [

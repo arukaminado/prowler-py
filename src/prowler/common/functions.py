@@ -4,6 +4,7 @@
 import io
 import csv
 import time
+import datetime
 
 from prowler.settings import aws_session
 
@@ -21,3 +22,11 @@ def get_credential_report():
     credential_report = list(csv.DictReader(csvfile))
     return credential_report
 
+
+def calculate_days(iso_time):
+    try:
+        now = datetime.datetime.now(datetime.timezone.utc)
+        delta = now - datetime.datetime.fromisoformat(iso_time)
+        return delta.days
+    except Exception as e:
+        return 999999
