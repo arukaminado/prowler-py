@@ -1,8 +1,9 @@
 #  Copyright (c) 2020 nalansitan.
 #  All rights reserved.
 
-import sys
 import getopt
+import sys
+
 import boto3
 
 

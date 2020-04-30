@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from typing import List, Callable, NamedTuple
+from typing import List, Callable, NamedTuple, Tuple
 
 
 class Rule(NamedTuple):
@@ -9,7 +9,7 @@ class Rule(NamedTuple):
     scored: bool
     level: int
     cis_benchmark: bool
-    check_function: Callable[[], List[str]]
+    check_function: Callable[[], Tuple[bool, List[str]]]
 
 
 class AbstractCheck(metaclass=ABCMeta):
