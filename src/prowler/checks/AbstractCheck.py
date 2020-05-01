@@ -1,6 +1,8 @@
+import inspect
 from abc import ABCMeta, abstractmethod
 from typing import List, Callable, NamedTuple, Tuple
 
+CheckFunction = Callable[[], Tuple[bool, List[str]]]
 
 class Rule(NamedTuple):
     prowler_id: str
@@ -9,10 +11,15 @@ class Rule(NamedTuple):
     scored: bool
     level: int
     cis_benchmark: bool
-    check_function: Callable[[], Tuple[bool, List[str]]]
+    check_function: CheckFunction
 
 
 class AbstractCheck(metaclass=ABCMeta):
+    def checks_file(self) -> str:
+        a = inspect.getfile(self.__class__).rsplit('.', 1)
+        assert a[1] == 'py'
+        return a[0] + '.yml'
+
     @abstractmethod
     def rules(self) -> List[Rule]:
         pass
