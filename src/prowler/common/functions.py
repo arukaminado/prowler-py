@@ -43,7 +43,8 @@ def get_credential_report():
 
     report = g['credential_report']
     if not report:
-        g['credential_report'] = (report := actual_get_credential_report())
+        report = actual_get_credential_report()
+        g['credential_report'] = report
     return report
 
 
