@@ -1,19 +1,16 @@
 #  Copyright (c) 2020 nalansitan.
 #  All rights reserved.
 
+from sys import stderr
+
 from prowler.checks.IAMCheck import IAMCheck
-# from prowler.common.functions import *
-from prowler.settings import aws_session
+from prowler.globals import Session
 
 
 def main():
-    print("python version of prowler, continually updated...")
-    sts = aws_session.client('sts')
-    # credential_report = get_credential_report()
-    print(IAMCheck().rules())
+    print("python version of prowler, continually updated...", file=stderr)
     for rule in IAMCheck().rules():
-        print('check %s : %s' % (rule.prowler_id, rule.title))
-        print(rule.check_function())
+        Session.check(rule)
 
 
 if __name__ == '__main__':

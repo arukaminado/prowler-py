@@ -5,26 +5,8 @@ import csv
 import datetime
 import io
 import time
-from functools import wraps
-from typing import Callable
 
-from prowler import g
-from prowler.checks import CheckFunction
 from prowler.settings import aws_session
-
-
-def default_message(message='') -> Callable[[CheckFunction], CheckFunction]:
-    def decorate(func: CheckFunction) -> CheckFunction:
-        @wraps(func)
-        def wrapped_func():
-            ok, m = func()
-            if ok and len(m) == 0 and len(message) != 0:
-                m.append(message)
-            return ok, m
-
-        return wrapped_func
-
-    return decorate
 
 
 def get_credential_report():
@@ -41,6 +23,7 @@ def get_credential_report():
         credential_report = list(csv.DictReader(csvfile))
         return credential_report
 
+    from prowler import g
     report = g['credential_report']
     if not report:
         report = actual_get_credential_report()
@@ -55,3 +38,7 @@ def calculate_days(iso_time):
         return delta.days
     except Exception as e:
         return 999999
+
+
+def lpad(s, l):
+    return ' ' * (l - len(s)) + s

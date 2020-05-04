@@ -1,8 +1,9 @@
 import inspect
 from abc import ABCMeta, abstractmethod
-from typing import List, Callable, NamedTuple, Tuple
+from typing import List, Callable, NamedTuple
 
-CheckFunction = Callable[[], Tuple[bool, List[str]]]
+CheckFunction = Callable[[], None]
+
 
 class Rule(NamedTuple):
     prowler_id: str
