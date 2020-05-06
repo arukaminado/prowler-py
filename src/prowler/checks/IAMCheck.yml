@@ -13,3 +13,17 @@ checks:
     cis_benchmark: true
     level: 1
     check_function: prowler.checks.IAMCheck.check_iam_mfa_for_users_with_console_password
+  - prowler_id: "1.3"
+    rule_id: iam_credentials_unused_disabled
+    title: Ensure credentials unused for 90 days or greater are disabled
+    scored: true
+    cis_benchmark: true
+    level: 1
+    check_function: prowler.checks.IAMCheck.check_iam_credentials_unused_disabled
+  - prowler_id: "1.4"
+    rule_id: iam_access_keys_rotated
+    title: Ensure access keys are rotated every 90 days or less
+    scored: true
+    cis_benchmark: true
+    level: 1
+    check_function: prowler.checks.IAMCheck.check_iam_access_keys_rotated

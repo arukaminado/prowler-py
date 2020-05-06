@@ -34,6 +34,7 @@ setup(
     install_requires=[
       'boto3',
       'pyyaml',
+      'termcolor',
     ],
     entry_points={
         'console_scripts': [
