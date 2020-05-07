@@ -3,8 +3,8 @@ from typing import Dict, List, Tuple
 
 from termcolor import cprint
 
-from .checks.AbstractCheck import Rule
-from .common.functions import lpad
+from prowler.checks.AbstractCheck import Rule
+from prowler.common.functions import lpad
 
 g = defaultdict(lambda: None)
 

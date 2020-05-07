@@ -23,7 +23,7 @@ def get_credential_report():
         credential_report = list(csv.DictReader(csvfile))
         return credential_report
 
-    from prowler import g
+    from prowler.globals import g
     report = g['credential_report']
     if not report:
         report = actual_get_credential_report()

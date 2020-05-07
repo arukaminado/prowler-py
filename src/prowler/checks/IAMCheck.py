@@ -3,7 +3,7 @@ from typing import List
 
 import yaml
 
-from prowler import Session
+from prowler.globals import Session
 from prowler.common.functions import get_credential_report, calculate_days
 from . import AbstractCheck, Rule
 
