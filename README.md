@@ -7,3 +7,13 @@
 ```
 pip install prowler-py
 ```
+
+## upload to testpypi
+```
+rm -rf dist build src/prowler_py.egg-info 
+python setup.py sdist
+python setup.py bdist_wheel
+twine upload --repository testpypi dist/*
+
+pip install -i https://test.pypi.org/simple/ prowler-py
+```
