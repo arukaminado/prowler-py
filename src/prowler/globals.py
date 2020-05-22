@@ -1,12 +1,20 @@
+import sys
 from collections import defaultdict
 from typing import Dict, List, Tuple
 
 from termcolor import cprint
 
+import boto3
+
 from prowler.checks.AbstractCheck import Rule
 from prowler.common.functions import lpad
+from prowler.args import get_argv
 
 g = defaultdict(lambda: None)
+
+g['args'] = get_argv(sys.argv[1:])
+g['aws_session'] = boto3.session.Session(profile_name=g['args'].get('profile'),
+                                    region_name=g['args'].get('region'))
 
 
 class Session(object):

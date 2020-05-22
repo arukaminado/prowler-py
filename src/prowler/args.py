@@ -4,8 +4,6 @@
 import getopt
 import sys
 
-import boto3
-
 
 def print_help():
     print('''USAGE:
@@ -64,7 +62,3 @@ def get_argv(argv):
             result['region'] = arg
     return result
 
-
-args = get_argv(sys.argv[1:])
-aws_session = boto3.session.Session(profile_name=args.get('profile'),
-                                    region_name=args.get('region'))
